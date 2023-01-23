@@ -32,12 +32,18 @@ padding-top: 1rem;
 h1 {
     margin-top: 50px;
     font-family: 'Roboto';
-font-style: normal;
+font-style: bold;
 font-weight: 500;
 font-size: 24px;
 line-height: 28px;
 text-align: center;
 color: #FFFFFF;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 `
 
@@ -60,7 +66,8 @@ border-radius: 5px;
 width: 391.42px;
 height: 38.32px;
 padding-left: 10px;
-margin-bottom: 1.3rem;
+border: ${props => (props.error ? '2px solid red' : null)};
+
 font-size: 18px;
 
 &:focus{
@@ -79,10 +86,17 @@ border: none;
 cursor: pointer;
 font-size: 15px;
 margin-bottom: 1.3rem;
+margin-top: 1.3rem;
 
 &:active {
     opacity: 0.6;
 }
+`
+
+export const ErrorMessage = styled.p `
+    color: red;
+    font-weight: 500;
+    font-size: 15px;
 `
 
 export const SignInLink = styled.p `
@@ -91,7 +105,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 16px;
 line-height: 16px;
-
+cursor: pointer;
 color: #FFFFFF;
 
 a {

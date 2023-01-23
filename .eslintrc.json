@@ -25,6 +25,7 @@
   "rules": {
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
+    "no-unsed-vars": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "import-helpers/order-imports": [
       "warn",
