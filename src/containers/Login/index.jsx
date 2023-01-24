@@ -1,10 +1,18 @@
-import {  ContainerItems, LoginContainer,LoginImage,Button, Label,Input,SignInLink,ErrorMessage } from "./style"
+import {  ContainerItems, LoginContainer,LoginImage, Label,Input,SignInLink,ErrorMessage } from "./style"
 import logoImg from '../../assets/9 1.svg'
 import logo from '../../assets/logo.svg'
   import {useForm} from 'react-hook-form'
 import { useState } from "react";
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup'; 
+import { yupResolver } from '@hookform/resolvers/yup';
+import api from '../../services/api'
+import Button from "../../components/Button";
+import { NavLink } from "react-router-dom";
+
+
+
+
+
 function Login() {
   const schema = yup.object().shape({
     email: yup.string().email("Please enter email correct").required(),
@@ -14,7 +22,14 @@ function Login() {
   const { register, handleSubmit,  formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
-  const onSubmit = data => console.log(data)
+  const onSubmit = async clientData => {
+    const response =  await api.post('sessions', {
+      email: clientData.email,
+      password: clientData.password
+    })
+
+    console.log(response)
+  }
 
 
 
@@ -37,7 +52,12 @@ function Login() {
 
     <Button type="submit" >Sign In</Button>
     </form>
+
+
+    <NavLink to='/register' style={{textDecoration: "none"}}>
     <SignInLink>Nao possui Conta ? <a>SignUp</a></SignInLink>
+    </NavLink>
+    
     </ContainerItems>
   </LoginContainer>
 

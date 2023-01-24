@@ -1,14 +1,12 @@
-import { useState } from "react";
-import Login from "./containers/Login";
-import Globalstyles from "./styles/globalstyles";
+
+import RoutesF from "./routes";
+
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
-    <Globalstyles/>
-    <Login/>
+  <RoutesF/>
   </>
   );
 }

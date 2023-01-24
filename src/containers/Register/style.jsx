@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BackgroundImage from '../../assets/background.svg'
 
 
-export const LoginContainer= styled.div`
+export const RegisterContainer= styled.div`
     height: 100vh;
     width: 100vw;
     background: url('${BackgroundImage}');
@@ -13,15 +13,15 @@ export const LoginContainer= styled.div`
 `
 
     
-export const LoginImage = styled.img `
-height: 70%;
+export const RegisterImage = styled.img `
+height: 80%;
 `
 
 export const ContainerItems= styled.div `
 background: #373737;
 box-shadow: 0px 4px 15px rgba(74, 144, 226, 0.24);
 border-radius: 0 10px 10px 0;
-height: 70%;
+height: 80%;
 padding: 25px 75px;
 display: flex;
 flex-direction: column;
@@ -58,7 +58,7 @@ font-style: normal;
 font-weight: 500;
 font-size: 15px;
 line-height: 14px;
-margin-top: 10px;
+margin-top: ${props => (props.error ? '12px' : '15px')};
 margin-bottom: 5px;
 color: #FFFFFF;
 outline: none;
