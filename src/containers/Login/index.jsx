@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api'
 import Button from "../../components/Button";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 
@@ -54,9 +54,9 @@ function Login() {
     </form>
 
 
-    <NavLink to='/register' style={{textDecoration: "none"}}>
+    <Link to='/register' style={{textDecoration: "none"}}>
     <SignInLink>Nao possui Conta ? <a>SignUp</a></SignInLink>
-    </NavLink>
+    </Link>
     
     </ContainerItems>
   </LoginContainer>

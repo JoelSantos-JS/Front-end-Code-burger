@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api'
 import Button from "../../components/Button";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 
@@ -18,7 +18,7 @@ function Register() {
     name: Yup.string("Digite un nome valido").required(),
     email: Yup.string("Digite um Email valido").email().required(),
     password: Yup.string("Digite um password valido").required().min(5),
-    confirm_password: Yup.string("Digite um password valido").required().oneOf([Yup.ref('password')],'as senhas devem ser iguais'),
+    confirmPassword: Yup.string("Digite um password valido").required().oneOf([Yup.ref('password')],'as senhas devem ser iguais'),
     
   });
 
@@ -33,6 +33,7 @@ function Register() {
       password: clientData.password
     })
 
+    console.log(response)
     
   }
 
@@ -57,14 +58,14 @@ function Register() {
     <Label  error={errors.password?.message} >Senha</Label>
     <Input type='password' {...register('password')} error={errors.password?.message}/>
     <ErrorMessage>{errors.password?.message}</ErrorMessage>
-    <Label  error={errors.password?.message}>Confirmaçao da senha</Label>
-    <Input type='password' {...register('password')} error={errors.password?.message}/>
-    <ErrorMessage>{errors.password?.message}</ErrorMessage>
+    <Label  error={errors.confirmPassword?.message}>Confirmaçao da senha</Label>
+    <Input type='password' {...register('confirmPassword')} error={errors.confirmPassword?.message}/>
+    <ErrorMessage>{errors.confirmPassword?.message}</ErrorMessage>
     <Button type="submit" >Sign In</Button>
     </form>
-    <NavLink to='/' style={{textDecoration: "none"}}>
+    <Link to='/' style={{textDecoration: "none"}}>
     <SignInLink>Ja possui Conta ? <a>Sign In</a></SignInLink>
-    </NavLink>
+    </Link>
     
     </ContainerItems>
   </RegisterContainer>
