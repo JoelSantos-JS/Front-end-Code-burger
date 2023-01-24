@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api'
 import Button from "../../components/Button";
 import { Link, NavLink } from "react-router-dom";
-
+import {  toast } from 'react-toastify';
 
 
 
@@ -27,13 +27,50 @@ function Register() {
     resolver: yupResolver(schema)
   });
   const onSubmit = async clientData => {
-    const response =  await api.post('users', {
-      name: clientData.name,
-      email: clientData.email,
-      password: clientData.password
-    })
 
-    console.log(response)
+    try {
+     const {status} =   await api.post('users', {
+        name: clientData.name,
+        email: clientData.email,
+        password: clientData.password
+      },{
+        validateStatus: () => true
+      })
+
+
+      if(status === 200 || status === 201){
+        toast.success('Conta criada com sucesso', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+      }
+
+      if(status === 409) {
+        toast.error('Email ja cadastrado')
+      }
+  
+ 
+      
+    } catch (error) {
+      toast.error('🦄 Deu erro tente novamente', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+    }
+  
+    
     
   }
 

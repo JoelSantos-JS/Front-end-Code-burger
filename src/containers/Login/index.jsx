@@ -9,7 +9,7 @@ import api from '../../services/api'
 import Button from "../../components/Button";
 import { Link, NavLink } from "react-router-dom";
 
-
+import {  toast } from 'react-toastify';
 
 
 
@@ -23,10 +23,39 @@ function Login() {
     resolver: yupResolver(schema)
   });
   const onSubmit = async clientData => {
-    const response =  await api.post('sessions', {
-      email: clientData.email,
-      password: clientData.password
-    })
+
+    try {
+      const response =  await api.post('sessions', {
+        email: clientData.email,
+        password: clientData.password
+      })
+
+      toast.success('Logado com sucesso', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+      
+    } catch (error) {
+      toast.error('🦄 Deu erro', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+  
+    }
+   
+
 
     console.log(response)
   }
