@@ -101,7 +101,7 @@ function Register() {
     <Button type="submit" >Sign In</Button>
     </form>
     <Link to='/' style={{textDecoration: "none"}}>
-    <SignInLink>Ja possui Conta ? <a>Sign In</a></SignInLink>
+    <SignInLink>Ja possui Conta ? <span>Sign In</span></SignInLink>
     </Link>
     
     </ContainerItems>

@@ -8,12 +8,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api'
 import Button from "../../components/Button";
 import { Link, NavLink } from "react-router-dom";
+import { useUser } from "../../hooks/UserContext";
 
 import {  toast } from 'react-toastify';
 
 
 
 function Login() {
+  const {userData ,putUserData} = useUser()
+
+  console.log(userData)
+
+
+
   const schema = yup.object().shape({
     email: yup.string().email("Please enter email correct").required(),
     password: yup.string("Please enter password correct").required().min(6,"password must have 6 characters"),
@@ -25,11 +32,13 @@ function Login() {
   const onSubmit = async clientData => {
 
     try {
-      const response =  await api.post('sessions', {
+      const {data} =  await api.post('sessions', {
         email: clientData.email,
-        password: clientData.password
+        password: clientData.password,
+         
       })
-
+         
+      putUserData(data)
       toast.success('Logado com sucesso', {
         position: "top-right",
         autoClose: 2000,
@@ -40,6 +49,7 @@ function Login() {
         progress: undefined,
         theme: "colored",
         });
+
       
     } catch (error) {
       toast.error('🦄 Deu erro', {
@@ -54,11 +64,13 @@ function Login() {
         });
   
     }
-   
 
 
-    console.log(response)
+
   }
+
+
+
 
 
 
@@ -84,7 +96,7 @@ function Login() {
 
 
     <Link to='/register' style={{textDecoration: "none"}}>
-    <SignInLink>Nao possui Conta ? <a>SignUp</a></SignInLink>
+    <SignInLink>Nao possui Conta ? <span>SignUp</span></SignInLink>
     </Link>
     
     </ContainerItems>

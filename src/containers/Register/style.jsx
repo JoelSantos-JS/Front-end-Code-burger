@@ -98,7 +98,7 @@ line-height: 16px;
 cursor: pointer;
 color: #FFFFFF;
 
-a {
+span {
     &:hover{
         color: blue;
         transition: 0.4s ease-in-out;
