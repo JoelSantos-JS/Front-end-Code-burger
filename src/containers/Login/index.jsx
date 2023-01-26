@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api'
 import Button from "../../components/Button";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink , useNavigate } from "react-router-dom";
 import { useUser } from "../../hooks/UserContext";
 
 import {  toast } from 'react-toastify';
@@ -16,8 +16,8 @@ import {  toast } from 'react-toastify';
 
 function Login() {
   const {userData ,putUserData} = useUser()
+  const navigate = useNavigate()
 
-  console.log(userData)
 
 
 
@@ -41,7 +41,7 @@ function Login() {
       putUserData(data)
       toast.success('Logado com sucesso', {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: 1380,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -49,6 +49,12 @@ function Login() {
         progress: undefined,
         theme: "colored",
         });
+
+        setTimeout(() => {
+          navigate('/')
+        },1200)
+
+        
 
       
     } catch (error) {
