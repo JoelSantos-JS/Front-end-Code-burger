@@ -10,6 +10,19 @@ export const OffersContainer = styled.div`
  
     padding: 35px 0 35px 0;
 
+p {
+    font-style: normal;
+    
+font-weight: 700;
+text-align: center;
+flex-wrap: wrap;
+font-size: 18px;
+line-height: 120%;
+
+color: #212121;
+
+}
+
     .rec.rec-arrow {
         background: #9758A6;
         color: white;
@@ -40,6 +53,7 @@ export const ContainerItems = styled.div`
 `
 
 export const Image = styled.img`
+    height: 200px;
     width: 200px;
     border-radius: 6px;
 `
