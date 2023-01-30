@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 
 
-export const ProductsContainer = styled.div `
+export const Container = styled.div `
     display: flex;
     flex-direction: column;
+ 
+    background:    #EFEFEF;
 `
 
 export const ProductsImg = styled.img `
@@ -30,4 +32,12 @@ font-weight: 400;
 font-size: 17px;
 line-height: 20px;
 
+`
+
+export const ProductsContainer= styled.div`
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 20px;
 `

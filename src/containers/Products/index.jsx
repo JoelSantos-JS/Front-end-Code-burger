@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import products from '../../assets/products.svg'
+import productsImg from '../../assets/products.svg'
+import CardProducts from '../../components/CardProducts'
 import api from '../../services/api'
-import { ProductsContainer, ProductsImg, CategoryButton,CategoriesMenu } from './style'
+import { ProductsContainer, ProductsImg, Container, CategoryButton,CategoriesMenu } from './style'
 
 function Products() {
 
   const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState([])
   const [activeCategory, setActiveCategory] = useState(0)
 
-console.log(activeCategory)
     useEffect(() => {
         const loadCategories = async () => {
             const {data} = await api.get('categories')
@@ -17,18 +18,36 @@ console.log(activeCategory)
           
             setCategories(newCategories)
         }
-        loadCategories()
+        
+
+        const loadProducts= async () => {
+          const {data} = await api.get('products')
+
+
+          
+        
+          setProducts(data)
+      }
+      loadCategories()
+      loadProducts()
     } ,[])
   return (
-    <ProductsContainer>
+    <Container>
 
-<ProductsImg src={products} alt="logo da home" />
+<ProductsImg src={productsImg} alt="logo da home" />
       <CategoriesMenu>
               {categories && categories.map(category => (
                 <CategoryButton isActiveCategory={ activeCategory === category.id} type='button' key={category.id} onClick={() => {setActiveCategory(category.id)}}>{category.name}</CategoryButton>
               ))}
                    </CategoriesMenu>
-            </ProductsContainer>
+
+                  <ProductsContainer>
+                    {products && products.map(product => (
+                       <CardProducts key={product.id} product={product}/>
+                    ))}
+               
+                    </ProductsContainer>
+            </Container>
   )
 }
 
