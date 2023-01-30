@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Route, Routes } from 'react-router-dom'
+import {  BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from '../containers/Home'
 import Login from '../containers/Login'
 import Products from '../containers/Products'
@@ -10,7 +10,8 @@ function RoutesF() {
   return (
   
 
-  
+  <BrowserRouter>
+
     <Routes>
       
       
@@ -25,6 +26,7 @@ function RoutesF() {
         <Route path='/register' element={<Register/>} />
         
     </Routes>
+    </BrowserRouter>
    
   )
 }

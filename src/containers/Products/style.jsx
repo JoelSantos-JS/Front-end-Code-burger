@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Container = styled.div `
     display: flex;
     flex-direction: column;
- 
+    min-height: 100vh;
     background:    #EFEFEF;
 `
 
@@ -35,6 +35,7 @@ line-height: 20px;
 `
 
 export const ProductsContainer= styled.div`
+width :100%;
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(2, 1fr);

@@ -8,6 +8,7 @@ function Products() {
 
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
+  const [filterProducts, setFilterProducts] = useState([])
   const [activeCategory, setActiveCategory] = useState(0)
 
     useEffect(() => {
@@ -31,6 +32,21 @@ function Products() {
       loadCategories()
       loadProducts()
     } ,[])
+
+ useEffect(() => {
+  if(activeCategory === 0 ){
+    setFilterProducts(products)
+  }else{
+    const newFilterProducts = products.filter(
+      product => product.category_id === activeCategory
+    )
+ 
+
+    setFilterProducts(newFilterProducts)
+  }
+ }, [activeCategory,products])
+
+
   return (
     <Container>
 
@@ -42,7 +58,7 @@ function Products() {
                    </CategoriesMenu>
 
                   <ProductsContainer>
-                    {products && products.map(product => (
+                    {filterProducts && filterProducts.map(product => (
                        <CardProducts key={product.id} product={product}/>
                     ))}
                
