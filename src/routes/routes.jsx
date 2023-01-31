@@ -1,5 +1,6 @@
 import React from 'react'
 import {  BrowserRouter, Route, Routes } from 'react-router-dom'
+import Cart from '../containers/Cart'
 import Home from '../containers/Home'
 import Login from '../containers/Login'
 import Products from '../containers/Products'
@@ -18,6 +19,7 @@ function RoutesF() {
      <Route element={<PrivateRoutes/>}>
         <Route element={<Home/>} path='/' exact/>
         <Route element={<Products/>} path='/produtos' />
+        <Route element={<Cart/>} path='/carrinho' />
      </Route>
     
   

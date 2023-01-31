@@ -9,6 +9,11 @@ const CardContext = createContext({})
 export const CardProvider = ({children}) => {
     const [CardData, setCardData] = useState([])
 
+
+    const updateLocalStorage = async (products) => {
+        await localStorage.setItem('dataInfo', JSON.stringify(products))
+    }
+
     const putCardData = async (product) => {
        const cardIndex = CardData.findIndex(prd => prd.id === product.id)
 
@@ -24,9 +29,41 @@ export const CardProvider = ({children}) => {
         setCardData(newCartProducts)
        }
 
-       await localStorage.setItem('dataInfo', JSON.stringify(newCartProducts))
+      await updateLocalStorage(newCartProducts)
     }
 
+    const deleteProduct = async ProductId => {
+        const newCart = CardData.filter(product => product.id !== ProductId)
+
+        setCardData(newCart)
+      await   updateLocalStorage(newCart)
+    }
+
+
+    const increaseProducts = async  ProductID => {
+        const newCart = CardData.map( product => {
+            return product.id === ProductID ? {...product, quantity: product.quantity +1}: product
+        })
+
+        setCardData(newCart)
+       await updateLocalStorage(newCart)
+    }
+
+    const decreaseProducts = async ProductId => {
+        const newIndex = CardData.findIndex( pd => pd.id === ProductId)
+
+        if(CardData[newIndex].quantity > 0){
+
+
+        const newCart = CardData.map(product => {
+            return product.id === ProductId  ? {...product ,  quantity: product.quantity -1}: product
+        })
+       
+        setCardData(newCart)
+      await  updateLocalStorage(newCart)
+    }
+
+    }
 
 
     useEffect(() => {
@@ -43,7 +80,7 @@ export const CardProvider = ({children}) => {
    
 
     return (
-        <CardContext.Provider value={{putCardData, CardData}}>
+        <CardContext.Provider value={{putCardData, CardData,deleteProduct, increaseProducts,decreaseProducts}}>
             {children}
         </CardContext.Provider>
     )
