@@ -22,7 +22,7 @@ function Header() {
 
         <ContainerRight>
         <PageLink>
-        <AiOutlineShoppingCart size={30}/>
+        <AiOutlineShoppingCart size={30} onClick={() => navigate('/carrinho')}/>
             </PageLink>
 
             <Line></Line>

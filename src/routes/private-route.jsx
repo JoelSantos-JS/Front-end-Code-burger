@@ -1,13 +1,17 @@
 
 
 import { Navigate,Outlet } from 'react-router-dom'
+import Header from '../components/Header'
 
 function PrivateRoutes() {
     const user = localStorage.getItem('dataUser')
   
   
     return(
-        user ? <Outlet/> : <Navigate to='/login' />
+      <>
+        <Header/>
+      {  user ? <Outlet/> : <Navigate to='/login' />}
+        </>
     )
   }
   

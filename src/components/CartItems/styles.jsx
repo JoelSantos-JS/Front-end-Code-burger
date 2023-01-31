@@ -38,6 +38,8 @@ export const Body = styled.div`
         button {
             border: none;
             height: 30px;
+            border-radius: 10px;
+            font-weight: bold;
             cursor: pointer;
             font-size: 30px;
         }
