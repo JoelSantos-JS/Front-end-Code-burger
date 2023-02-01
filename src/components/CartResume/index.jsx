@@ -6,10 +6,12 @@ import formatCurrency from '../../utils/formatCurrency'
 import { useCard } from '../../hooks/CardContext'
 import api from '../../services/api'
 import {  toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
 function CartResume() {
   const [finalPrice , setFinalPrice] = useState(0)
   const [deliveryTax, setDeliveryTax] = useState(5)
 
+  const navigate= useNavigate()
   const {CardData} = useCard()
 
   useEffect(() => {
@@ -26,8 +28,10 @@ function CartResume() {
       const order = CardData.map(product => {
         return {id: product.id , quantity: product.quantity}
       })
-  
+      
       await api.post('orders', {products: order})
+
+    
       toast.success('Pedido Finalizado com sucesso', {
         position: "top-right",
         autoClose: 1380,
@@ -38,6 +42,11 @@ function CartResume() {
         progress: undefined,
         theme: "colored",
         });
+
+        setTimeout(() => {
+          navigate('/')
+        },2000)
+       
     } catch (error) {
       toast.error('Deu algum erro com seu Pedido', {
         position: "top-right",

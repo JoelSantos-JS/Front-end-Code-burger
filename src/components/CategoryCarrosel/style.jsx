@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 
 
 export const CategoryContainer = styled.div`
@@ -44,13 +46,18 @@ export const Image = styled.img`
     border-radius: 6px;
 `
 
-export const Button = styled.button`
+export const Button = styled(Link)`
     border: none;
      height: 55px;
 background: #9758A6;
 box-shadow: 0px 5px 10px rgba(151, 88, 166, 0.22), 0px 20px 40px rgba(151, 88, 166, 0.24);
 border-radius: 15px;
 color: #FFFFFF;
+text-decoration: none;
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
 
 font-size: 18px;
 cursor: pointer;

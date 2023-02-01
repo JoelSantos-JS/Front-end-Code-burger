@@ -5,10 +5,29 @@ import { OffersContainer, OffersImage , ContainerItems , Image, Button } from '.
 import api from '../../services/api'
 import Carousel from 'react-elastic-carousel';
 import formatCurrency from '../../utils/formatCurrency';
-
+import { useCard } from '../../hooks/CardContext';
+import {  toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 function OffersCarousel() {
   const [products, setProducts] = useState()
+  const navigate = useNavigate()
 
+  const {putCardData } = useCard()
+
+  const addProdutct  = (products) => {
+   {products && putCardData(products)}
+   toast.success('Item adicionado ao Carrinho  com sucesso', {
+    position: "top-right",
+    autoClose: 1380,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
+    navigate('/carrinho')
+  }
 
     useEffect(() => {
         const loadProducts = async () => {
@@ -45,7 +64,9 @@ function OffersCarousel() {
                             <p>{product.name}</p>
                             <p>Preço: {formatCurrency(product.price)}</p>
                           
-                            <Button>
+                            <Button onClick={() => addProdutct(product)
+                                
+                            }>
                                 Peça agora
                                 
                             </Button>

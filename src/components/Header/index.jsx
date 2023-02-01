@@ -4,9 +4,21 @@ import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {BsPeople} from 'react-icons/bs'
 
 import { useNavigate } from 'react-router-dom'
+import { useUser } from '../../hooks/UserContext'
  
 function Header() {
+    const { logout} = useUser()
     const navigate = useNavigate()
+    const {userData} =useUser()
+
+    const logoutUser = () => {
+        logout()
+
+        setTimeout(() => {
+            navigate('/login')
+        },1800)
+     
+    }
 
   return (
     <Container>
@@ -31,8 +43,8 @@ function Header() {
             </PageLink>
 
             <ContainerText>
-                <p>Ola Joel</p>
-                <PageLinkExit>Sair</PageLinkExit>
+                <p>Ola {userData.name}</p>
+                <PageLinkExit onClick={() => logoutUser()}>Sair</PageLinkExit>
             </ContainerText>
         </ContainerRight>
     </Container>

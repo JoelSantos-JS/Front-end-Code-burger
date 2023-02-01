@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import productsImg from '../../assets/products.svg'
 import CardProducts from '../../components/CardProducts'
 import api from '../../services/api'
 import { ProductsContainer, ProductsImg, Container, CategoryButton,CategoriesMenu } from './style'
 
 function Products() {
+
+
 
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
