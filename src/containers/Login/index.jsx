@@ -50,12 +50,20 @@ function Login() {
         theme: "colored",
         });
 
+        
+
         setTimeout(() => {
-          navigate('/')
+          if(data.admin){
+            navigate('/admin')
+          }else {
+            navigate('/')
+          }
+         
+        
         },1200)
 
         
-
+        
       
     } catch (error) {
       toast.error('🦄 Deu erro', {
