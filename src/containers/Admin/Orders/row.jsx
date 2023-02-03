@@ -10,17 +10,37 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-
+import api from '../../../services/api'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { Container, ProductsImg } from './style';
+import { Container, ProductsImg, ReactSelectStyle } from './style';
 
-function Row({row}) {
+import status from './order-status';
+
+function Row({row,orders,setOrders}) {
 
     const [open, setOpen] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
+    async function setNewStatus(id,status) {
+      setIsLoading(true)
+      try 
+      {
+        await api.put(`orders/${id}`, {status})
+        const newOrders = orders.map(order => {
+         return order._id === id ?  {...order,status} : order
+        })
 
-    console.log(row)
-  
+        setOrders(newOrders)
+      }catch (err) {
+        console.log(err)
+      }finally{
+        setIsLoading(false)
+      }
+      
+     
+    }
+
+
     return (
       <React.Fragment>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -38,7 +58,9 @@ function Row({row}) {
           </TableCell>
           <TableCell >{row.name}</TableCell>
           <TableCell >{row.data}</TableCell>
-          <TableCell >{row.status}</TableCell>
+          <TableCell >
+              <ReactSelectStyle options={status} menuPortalTarget={document.body} defaultValue={status.find( option => option.value === row.status) || null} onChange={ newStatus => {setNewStatus(row.orderId, newStatus.value)}} placeholder='Selecione o Status' />
+            </TableCell>
           <TableCell ></TableCell>
         </TableRow>
         <TableRow>
