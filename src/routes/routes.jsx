@@ -27,6 +27,7 @@ function RoutesF() {
 
      <Route element={<PrivateAdmin/>}>
      <Route element={<Admin/> } path='/admin' isAdmin={true} />
+     <Route element={<Admin/> } path='/listarProdutos' isAdmin={true} />
      </Route>
     
   
