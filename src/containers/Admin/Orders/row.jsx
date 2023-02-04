@@ -53,13 +53,13 @@ function Row({row,orders,setOrders}) {
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
           </TableCell>
-          <TableCell component="th" scope="row">
+          <TableCell component="th" scope="row" className='row' >
             {row.orderId}
           </TableCell>
-          <TableCell >{row.name}</TableCell>
-          <TableCell >{row.data}</TableCell>
-          <TableCell >
-              <ReactSelectStyle options={status} menuPortalTarget={document.body} defaultValue={status.find( option => option.value === row.status) || null} onChange={ newStatus => {setNewStatus(row.orderId, newStatus.value)}} placeholder='Selecione o Status' />
+          <TableCell className='row'  >{row.name}</TableCell>
+          <TableCell className='row'  >{row.data}</TableCell>
+          <TableCell className='row'  >
+              <ReactSelectStyle align='center' options={status} menuPortalTarget={document.body} defaultValue={status.find( option => option.value === row.status) || null} onChange={ newStatus => {setNewStatus(row.orderId, newStatus.value)}} placeholder='Selecione o Status' />
             </TableCell>
           <TableCell ></TableCell>
         </TableRow>

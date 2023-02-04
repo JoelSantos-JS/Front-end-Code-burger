@@ -2,9 +2,26 @@ import styled from "styled-components";
 
 import ReactSelect from "react-select";
 export const Container = styled.div`
-    background: #efefef;
+
     min-height: 100vh;
+    width: 100vw;
+    background: #e5e5e5;
+    min-height: 100vh;
+
+    .topmenu {
+        font-size: 19px;
+        font-weight: bold;
+    }
+    .row {
+        font-size: 18px;
+    }
    
+`
+
+export const SuperContainer = styled.div`
+    display: flex;
+    justify-content: flex-start;
+
 `
 
 export const ProductsImg = styled.img`
@@ -15,10 +32,11 @@ export const ProductsImg = styled.img`
 
 export const ReactSelectStyle = styled(ReactSelect)`
      width: 250px;
-  
-
+   
         .css-13cymwt-control{
-            
+            display: flex;
+    align-items: center;
+    justify-content: center;
             cursor: pointer;
         }
 `

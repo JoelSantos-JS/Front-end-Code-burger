@@ -11,10 +11,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import status from '../Orders/order-status'
-import { Container, Menu, LinkMenu } from './style'
+import { Container, Menu, LinkMenu ,SuperContainer} from './style'
 import api from '../../../services/api'
 import Row from './row';
 import formatDate from '../../../utils/formatDate';
+import { SidebarAdmin } from '../../../components/SideMenuAdmin';
 
 function Orders() {
 
@@ -87,37 +88,41 @@ loadOrders()
 
 {
   return (
-    <Container>
-
-      <Menu>
-        {
-          status && status.map(status => (
-            <LinkMenu key={status.id} isActiveStatus={activeStatus === status.id} onClick={() => handleStatus(status )}>{status.label}</LinkMenu>
-          ))
-        }
-      </Menu>
-
-       <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Pedido</TableCell>
-            <TableCell >Cliente</TableCell>
-            <TableCell >Data do pedido</TableCell>
-            <TableCell >Status</TableCell>
-            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.orderId} row={row}  orders={orders} setOrders={setOrders}/>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-        
-        </Container>
+    <SuperContainer>
+    <SidebarAdmin/>
+     <Container>
+       
+       <Menu>
+         {
+           status && status.map(status => (
+             <LinkMenu key={status.id} isActiveStatus={activeStatus === status.id} onClick={() => handleStatus(status )}>{status.label}</LinkMenu>
+           ))
+         }
+       </Menu>
+         
+        <TableContainer component={Paper}>
+       <Table aria-label="collapsible table">
+         <TableHead>
+           <TableRow>
+             <TableCell />
+             <TableCell className='topmenu'>Pedido</TableCell>
+             <TableCell className='topmenu'>Cliente</TableCell>
+             <TableCell className='topmenu'>Data do pedido</TableCell>
+             <TableCell className='topmenu' align='center' >Status</TableCell>
+             
+           </TableRow>
+         </TableHead>
+         <TableBody>
+           {rows.map((row) => (
+             <Row key={row.orderId} row={row}  orders={orders} setOrders={setOrders}/>
+           ))}
+         </TableBody>
+       </Table>
+     </TableContainer>
+         
+         </Container>
+    </SuperContainer>
+   
   )
 }
 }

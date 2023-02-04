@@ -11,6 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import formatCurrency from '../../../utils/formatCurrency'
+import { SidebarAdmin } from '../../../components/SideMenuAdmin'
 function ListProducts() {
     const [products, setProducts] = useState([])
 
@@ -35,30 +36,32 @@ function ListProducts() {
 
   return (
     <Container>
-       <TableContainer component={Paper}>
+      <SidebarAdmin/>
+       <TableContainer component={Paper} style={{background: '#e5e5e5'}}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Nome</TableCell>
-            <TableCell>Preço</TableCell>
-            <TableCell align='center' >Produto em Ofertas</TableCell>
-            <TableCell>Imagem</TableCell>
-            <TableCell>Editar</TableCell>
+        <TableHead >
+          <TableRow >
+            <TableCell className='topmenu'>Nome</TableCell>
+            <TableCell className='topmenu'>Preço</TableCell>
+            <TableCell align='center' className='topmenu' >Produto em Ofertas</TableCell>
+            <TableCell className='topmenu'>Imagem</TableCell>
+            <TableCell className='topmenu'>Editar</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody  style={{background: '#ffff'}}>
           {products.map((product) => (
             <TableRow
               key={product.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" className='row'>
                 {product.name}
               </TableCell>
-              <TableCell >{formatCurrency(product.price)}</TableCell>
-              <TableCell align='center' >{isOffer(product.offer)}</TableCell>
-              <TableCell > <Img src={product.url} /> </TableCell>
-              <TableCell ><CiEditButton size={32} /></TableCell>
+              <TableCell className='row' >{formatCurrency(product.price)}</TableCell>
+              <TableCell align='center'  className='row' >{isOffer(product.offer)}</TableCell>
+              <TableCell  className='row' > <Img src={product.url} /> </TableCell>
+              <TableCell   className='row'><CiEditButton size={32} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
