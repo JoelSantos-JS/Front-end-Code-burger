@@ -12,9 +12,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import formatCurrency from '../../../utils/formatCurrency'
 import { SidebarAdmin } from '../../../components/SideMenuAdmin'
+import { useLocation, useNavigate } from 'react-router-dom'
 function ListProducts() {
     const [products, setProducts] = useState([])
+    const navigate =useNavigate()
 
+   
     useEffect(() => {
         const loadOrders = async () => {
           const {data} = await api.get('products')
@@ -33,6 +36,13 @@ function ListProducts() {
         return <MdCancel size={32} style={{color: 'red'}} />
 
       }
+      function editProduct(product)  {
+        if (!product) {
+          return;
+        }
+        navigate(`/editar-Produto`, { state: { product } });
+       
+      } 
 
   return (
     <Container>
@@ -61,7 +71,7 @@ function ListProducts() {
               <TableCell className='row' >{formatCurrency(product.price)}</TableCell>
               <TableCell align='center'  className='row' >{isOffer(product.offer)}</TableCell>
               <TableCell  className='row' > <Img src={product.url} /> </TableCell>
-              <TableCell   className='row'><CiEditButton size={32} /></TableCell>
+              <TableCell   className='row'><CiEditButton size={32} onClick={() => editProduct(product)} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

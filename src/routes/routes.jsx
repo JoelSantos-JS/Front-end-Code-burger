@@ -11,6 +11,8 @@ import PrivateAdmin from './privateAdmin'
 import paths from '../constants/path'
 import Orders from '../containers/Admin/Orders'
 import ListProducts from '../containers/Admin/ListProducts'
+import NewProducts from '../containers/Admin/NewProducts'
+import EditProduct from '../containers/Admin/EditProduct'
 
 function RoutesF() {
   return (
@@ -32,6 +34,8 @@ function RoutesF() {
      <Route element={<Admin/> } path={paths.Order} isAdmin={true} />
      <Route element={<Orders/> } path={paths.Orders} isAdmin={true} />
      <Route element={<ListProducts/> } path={paths.Products} isAdmin={true} />
+     <Route element={<NewProducts/> } path={paths.NewProduct} isAdmin={true} />
+     <Route element={<EditProduct/> } path={paths.EditeProduct} isAdmin={true} />
      </Route>
     
   
