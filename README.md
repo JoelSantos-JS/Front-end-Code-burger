@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img width="250px" src="./src/assets/logo-Codeburger.png" alt="logo-codeburger">
+    <img width="250px" src="./src/assets/logo.svg" alt="logo-codeburger">
 </h1>
 
 > ## 💻 Projeto
