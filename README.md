@@ -39,7 +39,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/W-Carlos/code-burger.git>
+$ git clone <https://github.com/JoelSantos-JS/Front-end-Code-burger>
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd code-burger
@@ -52,7 +52,7 @@ $ npm install
 # Execute a aplicação em modo de desenvolvimento
 $ yarn start
 
-# O servidor inciará na porta:3000 - acesse <http://localhost:3000> 
+# O servidor inciará na porta:5173 - acesse <http://127.0.0.1:5173/> 
 
 #A página será recarregada se você fizer edições.Você também verá quaisquer erros no console.
 ```
